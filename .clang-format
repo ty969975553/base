@@ -1,0 +1,34 @@
+Language:        Cpp
+BasedOnStyle:  Google
+
+# 访问修饰符的缩进或者向外伸展,例如 public:
+AccessModifierOffset: -4
+
+BraceWrapping:
+  AfterClass: true
+  AfterControlStatement: true
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterObjCDeclaration: true
+  AfterStruct: true
+  AfterUnion: true
+  AfterExternBlock: false
+  BeforeCatch: true
+  BeforeElse: true
+  IndentBraces: false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+
+# 这个指定如何处理每个单独的括号的情况
+BreakBeforeBraces: Custom
+
+# Namespace 换行： None  Inner  All
+NamespaceIndentation: All
+
+# Namespace 添加注释
+FixNamespaceComments: true
+
+# 缩进
+IndentWidth: 4
