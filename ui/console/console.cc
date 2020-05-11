@@ -7,30 +7,34 @@
 using namespace std;
 #endif
 
-namespace UI
+namespace ui
 {
-    /***********************************************************************
+/***********************************************************************
 Console
 ***********************************************************************/
-    namespace Console
+    namespace console
     {
-        void Console::Write(const wchar_t* string, int length)
+        void Write(const wchar_t* string, int length)
         {
 #if defined _MSVC
             HANDLE outHandle = GetStdHandle(STD_OUTPUT_HANDLE);
             DWORD fileMode = 0;
             DWORD written = 0;
-            if ((GetFileType(outHandle) & FILE_TYPE_CHAR) && GetConsoleMode(outHandle, &fileMode))
+            if ((GetFileType(outHandle) & FILE_TYPE_CHAR) &&
+                GetConsoleMode(outHandle, &fileMode))
             {
                 WriteConsole(outHandle, string, (int)length, &written, 0);
             }
             else
             {
                 int codePage = GetConsoleOutputCP();
-                int charCount = WideCharToMultiByte(codePage, 0, string, -1, 0, 0, 0, 0);
+                int charCount =
+                    WideCharToMultiByte(codePage, 0, string, -1, 0, 0, 0, 0);
                 char* codePageBuffer = new char[charCount];
-                WideCharToMultiByte(codePage, 0, string, -1, codePageBuffer, charCount, 0, 0);
-                WriteFile(outHandle, codePageBuffer, charCount - 1, &written, 0);
+                WideCharToMultiByte(codePage, 0, string, -1, codePageBuffer,
+                                    charCount, 0, 0);
+                WriteFile(outHandle, codePageBuffer, charCount - 1, &written,
+                          0);
                 delete[] codePageBuffer;
             }
 #elif defined _GCC
@@ -39,23 +43,20 @@ Console
 #endif
         }
 
-        void Console::Write(const wchar_t* string)
-        {
-            Write(string, wcslen(string));
-        }
+        void Write(const wchar_t* string) { Write(string, wcslen(string)); }
 
-        void Console::Write(const std::wstring& string)
+        void Write(const std::wstring& string)
         {
             Write(string.c_str, string.size());
         }
 
-        void Console::WriteLine(const std::wstring& string)
+        void WriteLine(const std::wstring& string)
         {
             Write(string);
             Write(L"\r\n");
         }
 
-        std::wstring Console::Read()
+        std::wstring Read()
         {
 #if defined _MSVC
             std::wstring result;
@@ -63,10 +64,12 @@ Console
             for (;;)
             {
                 wchar_t buffer;
-                ReadConsole(GetStdHandle(STD_INPUT_HANDLE), &buffer, 1, &count, 0);
+                ReadConsole(GetStdHandle(STD_INPUT_HANDLE), &buffer, 1, &count,
+                            0);
                 if (buffer == L'\r')
                 {
-                    ReadConsole(GetStdHandle(STD_INPUT_HANDLE), &buffer, 1, &count, 0);
+                    ReadConsole(GetStdHandle(STD_INPUT_HANDLE), &buffer, 1,
+                                &count, 0);
                     break;
                 }
                 else if (buffer == L'\n')
@@ -86,22 +89,19 @@ Console
 #endif
         }
 
-        void Console::SetColor(bool red, bool green, bool blue, bool light)
+        void SetColor(bool red, bool green, bool blue, bool light)
         {
 #if defined _MSVC
             WORD attribute = 0;
-            if (red)
-                attribute |= FOREGROUND_RED;
-            if (green)
-                attribute |= FOREGROUND_GREEN;
-            if (blue)
-                attribute |= FOREGROUND_BLUE;
-            if (light)
-                attribute |= FOREGROUND_INTENSITY;
+            if (red) attribute |= FOREGROUND_RED;
+            if (green) attribute |= FOREGROUND_GREEN;
+            if (blue) attribute |= FOREGROUND_BLUE;
+            if (light) attribute |= FOREGROUND_INTENSITY;
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), attribute);
             SetConsoleTextAttribute(GetStdHandle(STD_INPUT_HANDLE), attribute);
 #elif defined _GCC
-            int color = (blue ? 1 : 0) * 4 + (green ? 1 : 0) * 2 + (red ? 1 : 0);
+            int color =
+                (blue ? 1 : 0) * 4 + (green ? 1 : 0) * 2 + (red ? 1 : 0);
             if (light)
                 wprintf(L"\x1B[00;3%dm", color);
             else
@@ -109,11 +109,11 @@ Console
 #endif
         }
 
-        void Console::SetTitle(const std::wstring& string)
+        void SetTitle(const std::wstring& string)
         {
 #if defined _MSVC
             SetConsoleTitle(string.c_str());
 #endif
         }
-    } // namespace Console
-} // namespace UI
+    }  // namespace console
+}  // namespace ui

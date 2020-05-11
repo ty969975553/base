@@ -1,4 +1,5 @@
-#include "base/test/test.h"
+#include "base/test/unittest.h"
+//#include "config.h"
 
 int wmain(int argc, wchar_t* argv[])
 {

@@ -1,11 +1,12 @@
 #pragma once 
+#include 
 
 namespace base {
     namespace net {
         struct Flag
         {
             enum{
-                Reload = 
+                Reload = INTERNET_FLAG_
             }
         };
     }

@@ -7,12 +7,12 @@ namespace base
         return Update(0, data, size);
     }
 
-    unsigned int Crc32::Update(UInt32 init, const unsigned char* data,
+    unsigned int Crc32::Update(unsigned int init, const unsigned char* data,
                                size_t size)
     {
-        UInt32 crc = ~init;
+        unsigned int crc = ~init;
         /* CRC polynomial 0xedb88320 */
-        static const UInt32 table[256] = {
+        static const unsigned int table[256] = {
             0x00000000, 0x77073096, 0xee0e612c, 0x990951ba, 0x076dc419,
             0x706af48f, 0xe963a535, 0x9e6495a3, 0x0edb8832, 0x79dcb8a4,
             0xe0d5e91e, 0x97d2d988, 0x09b64c2b, 0x7eb17cbd, 0xe7b82d07,

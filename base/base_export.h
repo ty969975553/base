@@ -11,3 +11,4 @@
 #else
 #define BASE_EXPORT
 #endif  // defined(_MSC_VER)
+

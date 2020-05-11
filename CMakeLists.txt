@@ -2,29 +2,49 @@
 cmake_minimum_required(VERSION 3.2)
 
 #2 project
-PROJECT(pp)
+project(pp)
 
-SET(CMAKE_BUILD_TYPE Debug)
-IF(NOT CMAKE_BUILD_TYPE)
-SET(CMAKE_BUILD_TYPE Release)
-ENDIF()
+include(cmake/windows.cmake)
 
-MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
+# set(CMAKE_CXX_FLAGS )
+# specify the C++ standard
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+
+option(USE_UNICODE "Use Unicode" ON)
+
+option(SHARED_CRT "Use shared crt runtime library." OFF)
+
+option(WCHAR_AS_DEFAULT "Use wchar_t as internal type" ON)
+
+option(XP_TOOLSET "" ON)
+
+config_compiler_and_linker()
+
+# configure a header file to pass some of the CMake settings
+# to the source code
+configure_file(config/config.h.in config/config.h)
 
 #3 head file path
-INCLUDE_DIRECTORIES(
-    base
-)
+include_directories()
+
 
 #4 source directory
-AUX_SOURCE_DIRECTORY(
-    .
-)
+
+# add_subdirectory()
+
+add_subdirectory(third_party)
+add_subdirectory(base)
+add_subdirectory(ui)
+add_subdirectory(test)
+
+
+# add_subdirectory(base)
+# add_subdirectory(ui)
+
 
 #5 environment variable
 
 #6 add executable file ADD_EXECUTABLE(${PROJECT_NAME} ${TEST_MATH})
-ADD_EXECUTABLE()
 
-#7 add link library  
-TARGET_LINK_LIBRARIES()
+
