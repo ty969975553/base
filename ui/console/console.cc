@@ -47,7 +47,7 @@ Console
 
         void Write(const std::wstring& string)
         {
-            Write(string.c_str, string.size());
+            Write(string.c_str(), string.size());
         }
 
         void WriteLine(const std::wstring& string)
