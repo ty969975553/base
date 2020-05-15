@@ -19,7 +19,7 @@ namespace base
 
     BASE_EXPORT std::wstring SysNativeMBToWide(const std::string& native_mb);
 
-    BASE_EXPORT std::string WideToUTF8(std::wstring wide);
+    BASE_EXPORT std::string WideToUTF8(const std::wstring& wide);
 
-    BASE_EXPORT std::wstring UTF8ToWide(std::string utf8);
+    BASE_EXPORT std::wstring UTF8ToWide(const std::string& utf8);
 }  // namespace base

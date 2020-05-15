@@ -65,19 +65,19 @@ namespace base
         return SysMultiByteToWide(native_mb, CP_ACP);
     }
     
-    //std::string SysWideToUTF8(const std::wstring& wide)
-    //{
-    //    using convert_typeX = std::codecvt_utf8<wchar_t>;
-    //    std::wstring_convert<convert_typeX, wchar_t> converterX;
+    std::string WideToUTF8(const std::wstring& wide)
+    {
+        using convert_typeX = std::codecvt_utf8<wchar_t>;
+        std::wstring_convert<convert_typeX, wchar_t> converterX;
 
-    //    return converterX.to_bytes(wide);
-    //}
+        return converterX.to_bytes(wide);
+    }
 
-    //std::wstring SysUTF8ToWide(const std::string& utf8)
-    //{
-    //    using convert_typeX = std::codecvt_utf8<wchar_t>;
-    //    std::wstring_convert<convert_typeX, wchar_t> converterX;
-    //    return converterX.from_bytes(utf8);
-    //}
+    std::wstring UTF8ToWide(const std::string& utf8)
+    {
+        using convert_typeX = std::codecvt_utf8<wchar_t>;
+        std::wstring_convert<convert_typeX, wchar_t> converterX;
+        return converterX.from_bytes(utf8);
+    }
 
 }  // namespace base

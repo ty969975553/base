@@ -79,6 +79,7 @@ namespace base
             // int nCount = sizeof(szTemp) / sizeof(szTemp[0]);
             // int nLen = ::(module, id, szTemp, nCount);
             // if()
+            return false;
         }
     }  // namespace win
 }  // namespace base
