@@ -73,7 +73,8 @@
         "xlocmon": "cpp",
         "xloctime": "cpp",
         "xtree": "cpp",
-        "codecvt": "cpp"
+        "codecvt": "cpp",
+        "optional": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
 }
