@@ -25,6 +25,8 @@ config_compiler_and_linker()
 # to the source code
 configure_file(config/config.h.in config/config.h)
 
+# add definitions
+add_definitions(-DWIN32_LEAN_AND_MEAN -DNOMINMAX)
 
 #3 head file path
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})

@@ -130,3 +130,4 @@ macro(source_group_by_dir source_files)
         endforeach(sgbd_file)
     endif(MSVC)
 endmacro(source_group_by_dir)
+

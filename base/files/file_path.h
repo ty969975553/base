@@ -2,7 +2,10 @@
 #include <filesystem>
 
 #include "config/build_config.h"
-using fs = std::filesystem;
+
+namespace fs = std::filesystem;
+
+using fspath = std::filesystem::path;
 
 namespace base
 {
@@ -34,5 +37,4 @@ namespace base
         PATH_END
     };
 
-    
 }

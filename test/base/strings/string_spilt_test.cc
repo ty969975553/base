@@ -1,5 +1,6 @@
 #include "base/strings/string_split.h"
 #include "base/test/unittest.h"
+#include <exception>
 
 using namespace base;
 namespace Test
