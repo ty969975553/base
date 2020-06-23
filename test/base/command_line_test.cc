@@ -44,19 +44,7 @@ namespace Test
                 std::optional<bool> actual3 = cmdline.get<bool>(L"wjm");
                 bool expected3 = false;
                 TEST_ASSERT(actual3.value() == expected3);
-            });
-
-            TEST_CASE(L"GetOptional")
-            {
-                const wchar_t* argv[] = {L"/foo=3.1415926", L"-bAr=2",
-                                          L"-spaetzel=pierogi", L"-wjm=false"};
-
-                CommandLine cmdline(4, argv);
-                cmdline.PrintParseOptions();
-                std::optional<double> actual = cmdline.get<double>(L"foo");
-                double expected = 3.1415926;
-                TEST_ASSERT(abs(actual.value() - expected) < kEpsilon);
-            });
+            });          
         });
     }
 }  // namespace Test

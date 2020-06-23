@@ -1,5 +1,5 @@
 #pragma once
-//需要配合compatibility.manifest使用 因为API win8之后弃用GetVersionEx
+//锟斤拷要锟斤拷锟絚ompatibility.manifest使锟斤拷 锟斤拷为API win8之锟斤拷锟斤拷锟斤拷GetVersionEx
 #include <stddef.h>
 
 #include <string>
@@ -142,5 +142,6 @@ namespace base
         // sugar.
         BASE_EXPORT Version GetVersion();
 
+        BASE_EXPORT bool IsWindowsVistaOrGreater();
     }  // namespace win
 }  // namespace base

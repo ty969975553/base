@@ -241,7 +241,7 @@ namespace base
                 const char kProcessorNameString[] =
                     "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0";
                 base::win::Registry key(HKEY_LOCAL_MACHINE,
-                                        kProcessorNameString, KEY_READ);
+                                        kProcessorNameString, true);
                 processor_model_name_ = key.getString("ProcessorNameString");
             }
             return processor_model_name_;
@@ -264,5 +264,9 @@ namespace base
 
         Version GetVersion() { return OSInfo::GetInstance()->version(); }
 
+        bool IsWindowsVistaOrGreater()
+        {
+            return OSInfo::GetInstance()->version() >= VERSION_VISTA;
+        }
     }  // namespace win
 }  // namespace base

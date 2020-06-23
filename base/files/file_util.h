@@ -200,10 +200,6 @@ namespace base
     // Returns the number of read bytes, or -1 on error.
     BASE_EXPORT int ReadFile(const fspath& filename, char* data, int max_size);
 
-    // Writes the given buffer into the file, overwriting any data that was
-    // previously there.  Returns the number of bytes written, or -1 on error.
-    BASE_EXPORT int WriteFile(const fspath& filename, const char* data,
-                              int size);
 
     // Appends |data| to |filename|.  Returns true iff |size| bytes of |data|
     // were written to |filename|.

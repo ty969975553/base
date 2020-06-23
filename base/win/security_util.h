@@ -1,6 +1,7 @@
 #pragma once
 
 #include <windows.h>
+#include <string>
 #include "base/base_export.h"
 
 namespace base
@@ -18,5 +19,10 @@ namespace base
         // disabled), in which case this function will return false. You should
         // therefore check this flag only if the OS is Vista or later.
         BASE_EXPORT bool UserAccountControlIsEnabled();
+
+        
+        BASE_EXPORT bool GetIsUserAdmin();
+
+        BASE_EXPORT bool IsUserNonElevatedAdmin();
     }  // namespace win
 }  // namespace base

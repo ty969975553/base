@@ -75,6 +75,11 @@ namespace Test
             {
                 for (int key = PATH_WIN_START + 1; key < PATH_WIN_END; ++key)
                 {
+                    //ltsb win10 no exist floder
+                    if (key == DIR_TASKBAR_PINS)
+                    {
+                        continue;
+                    }
                     bool valid = true;
                     if (key == DIR_APP_SHORTCUTS)
                         valid =

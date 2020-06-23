@@ -2,9 +2,6 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
-    "options": {
-        "cwd": "${workspaceRoot}/out"
-    },
     "tasks": [
         {
             "label": "cmake gen sln",
@@ -21,7 +18,30 @@
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/out"
+            },
+        },
+        {
+            "label": "统计第三方库代码行数",
+            "type": "shell",
+            "command": "node",
+            "args": [
+                "CalculatorFolderLineNumber.js",
+                "${workspaceFolder}/third_party/nlohmann_single",
+                ".h",
+                ".cc",
+                ".hpp",
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/tool/js"
+            },
         }
     ]
 }

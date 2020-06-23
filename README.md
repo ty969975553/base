@@ -2,7 +2,7 @@
 
 - [] log
 - [] filesystem
-- [] commandlline
+- [x] commandlline
 - [] encrypt
 
 > - [] rc4
@@ -13,18 +13,19 @@
 
 > - [] replace
 > - [] findstring
-> - [] split
+> - [x] split
 > - [x] toLower toUpper
 
-- [] version
-- [] fileversion
-- [] windowversion
+- [x] version
+- [x] fileversion
+- [x] windowversion
 
 - [] win/device
 
-> - [] GetProcessUsername()
-> - [] GetPCName()
-> - [] GetCpuId()
+> - [x] GetProcessUsername()
+> - [x] GetPCName()
+> - [x] GetCpuId()
+> - [x] GetProductId();
 > - [] GetDiskIds()
 > - [] GetMacId()
 > - [] GetMachineId()
@@ -40,11 +41,11 @@
 
 - [] win
 
-> - [] Task
+> - [] Task/scheduler
 > - [] Service
-> - [] ShellExt
+> - [] ShellExtx
 > - [] ShortCut
-> - [] ScopeHandle
+> - [x] ScopeHandle
 
 - [] files
 
@@ -62,3 +63,30 @@
 > - [] libxml
 > - [] lzma_sdk
 > - []
+
+- [] serialization
+
+> - [] 接口
+> - [] xml
+> - [] json
+> - [] ini
+> - [] info
+
+- [] signal
+
+- [] wincrypt 封装
+
+- [] windows util
+
+> - [] IsProcExists
+> - [] RtlGetCompressionWorkSpaceSize
+> - [] GetProcAddressEx
+> - BOOL IsCompatibilityMode();
+
+guid
+
+UI
+
+/ uidef
+color mix
+colorlist
