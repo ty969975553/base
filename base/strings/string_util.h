@@ -128,3 +128,44 @@ inline bool startWith(const std::string& str, const std::string& head)
     }
     return str.compare(0, head.size(), head) == 0;
 }
+
+bool ReplaceString(std::wstring& str, size_t offset, const std::wstring& find_this,
+                   const std::wstring& replace_with, bool whole_word_only,
+                   bool replace_all_instances)
+{
+    if (find_this.empty() || find_this == replace_with ||
+        str.length() < find_this.length() || offset >= str.length())
+        return false;
+
+    bool found_and_replaced = false;
+
+    for (size_t pos = str.find(find_this, offset); pos != std::wstring::npos;
+         pos = str.find(find_this, pos))
+    {
+        auto is_whole_word = [&]() {
+            auto is_boundary = [](wchar_t c) {
+                return iswspace(c) || iswpunct(c);
+            };
+            if (pos == 0 || is_boundary(str.at(pos - 1)))
+            {
+                size_t pos_end = pos + find_this.length();
+                if (pos_end >= str.length() || is_boundary(str.at(pos_end)))
+                    return true;
+            }
+            return false;
+        };
+
+        if (whole_word_only && !is_whole_word())
+        {
+            pos += find_this.length();
+        }
+        else
+        {
+            str.replace(pos, find_this.length(), replace_with);
+            pos += replace_with.length();
+            found_and_replaced = true;
+            if (!replace_all_instances) break;
+        }
+    }
+    return found_and_replaced;
+}
