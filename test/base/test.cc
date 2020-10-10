@@ -5,6 +5,7 @@
 #include <locale>
 #include <optional>
 #include <string>
+#include <thread>
 
 #include "base/files/file_path.h"
 #include "base/macros.h"
@@ -104,6 +105,49 @@ namespace
         CloseHandle(hFile);
     }
 }  // namespace
+
+#pragma data_seg("MyData")
+int g_Value = 0;  // Notethattheglobalisnotinitialized.
+#pragma data_seg()
+#pragma comment(linker, "/SECTION:MyData,RWS")
+                  // DLL提供两个接口函数：
+int GetValue() { return g_Value; }
+void SetValue(int n) { g_Value = n; }
+
+#include <stdlib.h>
+
+#include <iostream>
+#include <vector>
+#include <bitset>
+using namespace std;
+
+class BitMap
+{
+public:
+    BitMap(size_t range) { _bitmap.resize(range >> 3); }
+    void Set(int num)
+    {
+        int index = num >> 3;  //确定在第几个字节
+        int pos = num % 8;
+        _bitmap[index] |= 1 << pos;
+    }
+    void Reset(int num)
+    {
+        int index = num >> 3;
+        int pos = num % 8;
+        _bitmap[index] &= ~(1 << pos);
+    }
+    bool Test(int num)
+    {
+        int index = num >> 3;
+        int pos = num % 8;
+        return _bitmap[index] &= 1 << pos;
+    }
+
+protected:
+    vector<char> _bitmap;
+};
+
 namespace Test
 {
     TEST_FILE
@@ -112,10 +156,17 @@ namespace Test
         {
             TEST_CASE(L"test")
             {
-                fspath file("E:/nodepad/trunk/build/Release/Test.exe");
-                ScannerFile(file);
-                //decltype(MessageBoxA)* func = GetProce;
-                //(*func)(nullptr,"1","1",MB_OK);
+                BitMap bm(-1);
+                bm.Set(10);
+                bm.Set(10555);
+                bm.Set(12222);
+                bm.Set(16666);
+                bm.Reset(10);
+                cout << bm.Test(10) << endl;
+                cout << bm.Test(10555) << endl;
+                cout << bm.Test(12222) << endl;
+                cout << bm.Test(16666) << endl;
+                bitset<-1> x;
             });
         });
     }

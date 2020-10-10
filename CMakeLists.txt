@@ -39,7 +39,7 @@ add_subdirectory(third_party)
 add_subdirectory(base)
 add_subdirectory(ui)
 add_subdirectory(test)
-
+add_subdirectory(demo)
 
 # add_subdirectory(base)
 # add_subdirectory(ui)

@@ -47,6 +47,11 @@ set (TEST_SRC
   test/unittest.cc
 )
 
+set (TIME_SRC
+  time/time_util.h
+  time/time_util.cc
+)
+
 set (WIN_SRC
   win/registry.h
   win/registry.cc
@@ -56,12 +61,16 @@ set (WIN_SRC
   win/scoped_handle.cc
   win/security_util.h
   win/security_util.cc
+  win/sysinfo.h
+  win/sysinfo.cc
   win/windows_util.h
   win/windows_util.cc
   win/scoped_co_mem.h
   win/windows_version.h
   win/windows_version.cc
+  win/nt_function_util.h
 )
+
 
 
 
@@ -72,6 +81,7 @@ set (SOURCES
   ${LOG_SRC}
   ${STRINGS_SRC}
   ${TEST_SRC}
+  ${TIME_SRC}
   ${WIN_SRC}
   ${FILE_SRC}
   base_export.h

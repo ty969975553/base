@@ -129,7 +129,8 @@ inline bool startWith(const std::string& str, const std::string& head)
     return str.compare(0, head.size(), head) == 0;
 }
 
-bool ReplaceString(std::wstring& str, size_t offset, const std::wstring& find_this,
+inline bool ReplaceString(std::wstring& str, size_t offset,
+                         const std::wstring& find_this,
                    const std::wstring& replace_with, bool whole_word_only,
                    bool replace_all_instances)
 {

@@ -16,5 +16,7 @@ namespace base
         BASE_EXPORT std::string GetProductId();
 
         BASE_EXPORT int GetCpuUsagePercent();
+
+        BASE_EXPORT bool GetBootTime(time_t *t);
     }    
 }

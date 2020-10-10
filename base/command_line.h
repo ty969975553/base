@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <array>
+#include <algorithm>
 #include <functional>
 #include <optional>
 #include <sstream>

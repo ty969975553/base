@@ -80,7 +80,8 @@
         "mutex": "cpp",
         "shared_mutex": "cpp",
         "thread": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "compare": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
 }

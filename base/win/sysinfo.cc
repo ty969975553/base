@@ -1,6 +1,9 @@
 #include "base/win/sysinfo.h"
-
+#include "base/win/nt_function_util.h"
+#include "base/time/time_util.h"
 #include <algorithm>
+#include <tchar.h>
+
 
 namespace base
 {
@@ -35,7 +38,7 @@ namespace base
                     if (LookupAccountSid(0, ptu->User.Sid, name, &nlen, dom,
                                          &dlen, (PSID_NAME_USE)&iUse))
                     {
-                        nlen = std::min(userNameLen - 1, (int)nlen);
+                        nlen = std::min(size_t(userNameLen) - 1, (size_t)nlen);
                         _tcsnccpy(userName, name, nlen);
                         userName[nlen] = 0;
                         ret = userName;
@@ -58,15 +61,15 @@ namespace base
 
         std::wstring GetProcessorId()
         {
-            struct
-            {
-                UInt32 eax;
-                UInt32 ebx;
-                UInt32 ecx;
-                UInt32 edx;
-            } id;
+            //struct
+            //{
+            //    UInt32 eax;
+            //    UInt32 ebx;
+            //    UInt32 ecx;
+            //    UInt32 edx;
+            //} id;
 
-            __cpuid((Int32 *)&id, 1);
+            //__cpuid((Int32 *)&id, 1);
 
             // ::FormatS(Text("%08X%08X"), id.edx, id.eax);
             return std::wstring();
@@ -75,8 +78,29 @@ namespace base
         std::string GetProductId() { return std::string(); }
 
         int GetCpuUsagePercent()
-        {
-          
+        { 
+            return 0;
+        }
+
+
+        bool  GetBootTime(time_t *t)
+        { 
+            USE_API(ntdll.dll, NtQuerySystemInformation);
+            if (!proc_NtQuerySystemInformation)
+            {
+                return false;
+            }
+            LONG status;
+            nt::SYSTEM_TIME_INFORMATION sti;  
+            status = proc_NtQuerySystemInformation(
+                SystemTimeOfDayInformation, &sti,
+                                              sizeof(sti), 0);
+            if (NO_ERROR != status) return false;
+
+            FILETIME ft;
+            memcpy(&ft, &sti.liKeBootTime, sizeof(ft));
+            *t = base::FileTimeToTime_t(ft);
+            return true;
         }
     }  // namespace win
 }  // namespace base
