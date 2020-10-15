@@ -6,16 +6,32 @@
 #include <limits>
 
 #include "base/base_export.h"
-#include "base/numerics/safe_math.h"
 #include "config/build_config.h"
 
 #if defined(OS_WIN)
 #include <windows.h>
 #endif
 
-namespace base {
+namespace base
+{
+    struct BASE_EXPORT Time
+    {
+        int year;
+        int month;
+        int dayOfWeek;
+        int day;
+        int hour;
+        int minute;
+        int second;
+        int milliseconds;
 
-    class TimeDelta;
+        int64_t total_milliseconds;
 
-    
-}
+        //filetime
+        int64_t file_time;
+
+        Time();
+        static Time LocalTime();
+        static Time UtcTime();
+    };
+}  // namespace base

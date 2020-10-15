@@ -8,6 +8,11 @@ set (CHECKSUM_SRC
   checksum/crc.cc
 )
 
+set (COMPRESS_SRC
+  compress/gzip.h
+  compress/gzip.cc
+)
+
 set (ENCRYPT_SRC
   encrypt/md5.h
   encrypt/md5.cc
@@ -50,6 +55,8 @@ set (TEST_SRC
 set (TIME_SRC
   time/time_util.h
   time/time_util.cc
+  time/time.h
+  time/time.cc
 )
 
 set (WIN_SRC
@@ -84,6 +91,7 @@ set (SOURCES
   ${TIME_SRC}
   ${WIN_SRC}
   ${FILE_SRC}
+  ${COMPRESS_SRC}
   base_export.h
   command_line.h
   command_line.cc
@@ -108,4 +116,7 @@ set (SOURCES
 source_group_by_dir(SOURCES)
 
 link_libraries(console)
+link_libraries(zlibstatic)
+include_directories(${CMAKE_BINARY_DIR}/third_party/zlib)
+message(STATUS "Include_directories ${CMAKE_BINARY_DIR}/third_party/zlib")
 add_library(base STATIC ${SOURCES} )

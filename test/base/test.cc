@@ -165,8 +165,7 @@ namespace Test
                 cout << bm.Test(10) << endl;
                 cout << bm.Test(10555) << endl;
                 cout << bm.Test(12222) << endl;
-                cout << bm.Test(16666) << endl;
-                bitset<-1> x;
+                cout << bm.Test(16666) << endl;               
             });
         });
     }
