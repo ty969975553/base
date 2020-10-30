@@ -27,7 +27,7 @@ namespace Test
                 GetBootTime(&t);
                 ui::console::WriteLine(std::to_wstring(t));
                 struct tm* timeinfo;
-                int sec, toyear, tomonth, today;
+                //int sec, toyear, tomonth, today;
                 timeinfo = localtime(&t);
                 std::cout << timeinfo->tm_year << std::endl;
                 std::cout << timeinfo->tm_mon << std::endl;
