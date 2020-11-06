@@ -60,6 +60,10 @@ set (TIME_SRC
 )
 
 set (WIN_SRC
+  win/font_util.h
+  win/font_util.cc
+  win/printer_util.h
+  win/printer_util.cc
   win/registry.h
   win/registry.cc
   win/resource_util.h
