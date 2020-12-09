@@ -13,6 +13,12 @@ set (COMPRESS_SRC
   compress/gzip.cc
 )
 
+Set (ENCODE_SRC
+  encode/hex.h
+  encode/hex.cc
+)
+
+
 set (ENCRYPT_SRC
   encrypt/md5.h
   encrypt/md5.cc
@@ -35,8 +41,8 @@ set (FILE_SRC
 
 
 set(LOG_SRC
-  log/logging.h
-  log/logging.cc 
+# log/logging.h
+# log/logging.cc 
 )
 
 set (STRINGS_SRC
@@ -88,6 +94,7 @@ set (WIN_SRC
 set (SOURCES
   ${BUSINESS_SRC}
   ${CHECKSUM_SRC}
+  ${ENCODE_SRC}
   ${ENCRYPT_SRC}
   ${LOG_SRC}
   ${STRINGS_SRC}

@@ -39,43 +39,62 @@ namespace base
         InitFromArgv(argc, argv);
     }
 
-    void CommandLine::PrintUsage() const
+    bool CommandLine::UsageTraversal() 
     {
-        if (!print_usage_)
+        bool bExit = false;
+        if (usages_.size() == 0)
         {
-            ui::console::WriteLine(L"no parameter description£¡");
+            ui::console::WriteLine(L"no parameter description!");
         }
         else
         {
-            ui::console::WriteLine(L"usage : [" + std::to_wstring(usages_.size()) + L"]");
-            for (auto item : usages_)
+            ui::console::WriteLine(L"usage total: [" + std::to_wstring(usages_.size()) + L"]");
+            for ( auto item : usages_)
             {
-#if defined(OS_WIN)
                 ui::console::Write(L"par : -" + item.para);
-                ui::console::WriteLine(L"description : " + item.description);
-#else
-
-#endif  // defined(OS_WIN)              
+                ui::console::WriteLine(L" description : " + item.description);    
+                if (HasOption(item.para))
+                {
+                    if (item.callback)
+                    {                       
+                        item.callback(get<StringType>(item.para).value());
+                        bExit = item.excute_return;
+                    }
+                }
+                else if (item.must)
+                {
+                    ui::console::SetColor(true, false, false, true);
+                    ui::console::WriteLine(L" miss par : " + item.para);
+                    ui::console::SetColor(true, false, false, true);
+                    bExit = true;
+                }
+                if (bExit) break;
             }
         }
+        return bExit;
     }
 
-    void CommandLine::SetCommandInfos(const UsageVector& infos) {
-        print_usage_ = true;
+    void CommandLine::SetCommandInfos(const UsageVector& infos,  bool print)
+    {
+        print_usage_ = print;
         usages_ = infos;
-        PrintUsage();
+        UsageTraversal();
     }
 
     void CommandLine::PrintParseOptions() const
     {
+#ifdef _DEBUG
         ui::console::WriteLine(L"------PrintParseOptions begin------");
-        for (auto item : options_)
+#endif
+        for (const auto& item : options_)
         {   
             ui::console::WriteLine(L"flag: " + std::wstring(item.first));
             ui::console::WriteLine(L"value: " +
                                    std::wstring(item.second.value_or(L"")));
         }
+#ifdef _DEBUG
         ui::console::WriteLine(L"------PrintParseOptions end------");
+#endif
     }
 
     void CommandLine::InitFromArgv(int argc, const CharType* const* argv)

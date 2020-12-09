@@ -1,3 +1,6 @@
 [submodule "third_party/zlib"]
 	path = third_party/zlib
 	url = https://github.com/madler/zlib
+[submodule "third_party/mysql"]
+	path = third_party/mysql
+	url = https://github.com/mysql/mysql-connector-cpp

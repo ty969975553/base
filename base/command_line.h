@@ -39,6 +39,7 @@ namespace base
         StringType para;         // para
         StringType description;  //参数说明
         bool excute_return;      //执行后是否退出
+        bool must;               //必须的参数
         std::function<void(const StringType&)> callback;  // para 存在执行函数
         /* data */
     };
@@ -50,9 +51,9 @@ namespace base
     public:
         CommandLine(int argc, const CharType* const* argv);
 
-        void PrintUsage() const;
+        bool UsageTraversal();
 
-        void SetCommandInfos(const UsageVector& infos); 
+        void SetCommandInfos(const UsageVector& infos, bool print = false); 
 
         void PrintParseOptions() const;
 

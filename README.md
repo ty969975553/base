@@ -82,6 +82,14 @@
 > - [] RtlGetCompressionWorkSpaceSize
 > - [] GetProcAddressEx
 > - BOOL IsCompatibilityMode();
+> - [] Local windows 国际化 winnls.h
+
+EnumDateFormatsExEx
+EnumSystemLocalesEx
+GetUserDefaultLocaleName
+EnumTimeFormatsEx
+
+GetNumberFormatEx
 
 guid
 

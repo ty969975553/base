@@ -81,7 +81,13 @@
         "shared_mutex": "cpp",
         "thread": "cpp",
         "regex": "cpp",
-        "compare": "cpp"
+        "compare": "cpp",
+        "charconv": "cpp",
+        "cstdarg": "cpp",
+        "future": "cpp",
+        "hash_map": "cpp",
+        "hash_set": "cpp",
+        "unordered_set": "cpp"
     },
     "C_Cpp.errorSquiggles": "Disabled",
 }

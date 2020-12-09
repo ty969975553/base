@@ -13,7 +13,7 @@ namespace base
 {
     class Time;
 
-    BASE_EXPORT fspath MakeAbsolutefspath(const fspath& input);
+    BASE_EXPORT fspath MakeAbsoluteFilePath(const fspath& input);
 
     BASE_EXPORT int64_t ComputeDirectorySize(const fspath& root_path);
 
