@@ -139,7 +139,7 @@ namespace Test
                 break;
         }
         WriteLine((testContext ? testContext->indentation : L"") + string);
-        SetColor(true, true, true, false);
+        SetColor(true, true, true, true);
     }
 
 #ifdef _MSVC
