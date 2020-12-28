@@ -65,7 +65,7 @@ namespace base
                 {
                     ui::console::SetColor(true, false, false, true);
                     ui::console::WriteLine(L" miss par : " + item.para);
-                    ui::console::SetColor(true, false, false, true);
+                    ui::console::SetColor(false, false, false, true);
                     bExit = true;
                 }
                 if (bExit) break;
