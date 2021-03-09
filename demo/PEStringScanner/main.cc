@@ -98,7 +98,7 @@ int wmain(int argc, wchar_t* argv[])
         {L"exe", L"need scanner exe filepath", false, true, nullptr},
         {L"json", L"strings vector json format", false, false, nullptr},
     };
-    scan_strings = {L"睦欣网络",L"KPZIP",L"KUAIZIP",L"SHZHANMENG.COM",L"广乐",L"快压",L"护眼精灵",L"ABC看图",L"JCWallpaper",L"LSZIP",L"CommandLine"};
+    scan_strings = {L""};
     cmdline.SetCommandInfos(usevec);
     cmdline.PrintParseOptions();
 

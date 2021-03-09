@@ -1,8 +1,8 @@
 //
 // registry.h
 //
-// 从POCO的Util库中的WinRegistryKey修改而来
-// 能够完成注册表的基本操作
+// 浠嶱OCO鐨刄til搴撲腑鐨刉inRegistryKey淇敼鑰屾潵
+// 鑳藉瀹屾垚娉ㄥ唽琛ㄧ殑鍩烘湰鎿嶄綔
 //
 #pragma once
 #include <Windows.h>

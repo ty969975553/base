@@ -1,3 +1,3 @@
 
 add_subdirectory(console)
-add_subdirectory(windows_controls)
+add_subdirectory(gui)

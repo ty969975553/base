@@ -128,6 +128,8 @@ source_group_by_dir(SOURCES)
 
 link_libraries(console)
 link_libraries(zlibstatic)
-include_directories(${CMAKE_BINARY_DIR}/third_party/zlib)
-message(STATUS "Include_directories ${CMAKE_BINARY_DIR}/third_party/zlib")
+# include_directories(${CMAKE_BINARY_DIR}/third_party/zlib)
+# message(STATUS "Include_directories ${CMAKE_BINARY_DIR}/third_party/zlib")
 add_library(base STATIC ${SOURCES} )
+
+

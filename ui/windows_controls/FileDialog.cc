@@ -1,6 +1,0 @@
-
-namespace ui {
-    namespace WinControl {
-        
-    }
-}
