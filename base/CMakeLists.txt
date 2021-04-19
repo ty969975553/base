@@ -102,7 +102,7 @@ set (SOURCES
   ${TIME_SRC}
   ${WIN_SRC}
   ${FILE_SRC}
-  ${COMPRESS_SRC}
+  # ${COMPRESS_SRC}
   base_export.h
   command_line.h
   command_line.cc
@@ -127,7 +127,7 @@ set (SOURCES
 source_group_by_dir(SOURCES)
 
 link_libraries(console)
-link_libraries(zlibstatic)
+# link_libraries(zlibstatic)
 # include_directories(${CMAKE_BINARY_DIR}/third_party/zlib)
 # message(STATUS "Include_directories ${CMAKE_BINARY_DIR}/third_party/zlib")
 add_library(base STATIC ${SOURCES} )

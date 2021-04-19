@@ -1,9 +1,11 @@
 #include "base/win/sysinfo.h"
-#include "base/win/nt_function_util.h"
-#include "base/time/time_util.h"
-#include <algorithm>
+
 #include <tchar.h>
 
+#include <algorithm>
+
+#include "base/time/time_util.h"
+#include "base/win/nt_function_util.h"
 
 namespace base
 {
@@ -38,7 +40,7 @@ namespace base
                     if (LookupAccountSid(0, ptu->User.Sid, name, &nlen, dom,
                                          &dlen, (PSID_NAME_USE)&iUse))
                     {
-                        nlen = std::min(size_t(userNameLen) - 1, (size_t)nlen);
+                        nlen = std::min(DWORD(userNameLen) - 1, (DWORD)nlen);
                         _tcsnccpy(userName, name, nlen);
                         userName[nlen] = 0;
                         ret = userName;
@@ -61,7 +63,7 @@ namespace base
 
         std::wstring GetProcessorId()
         {
-            //struct
+            // struct
             //{
             //    UInt32 eax;
             //    UInt32 ebx;
@@ -77,24 +79,19 @@ namespace base
 
         std::string GetProductId() { return std::string(); }
 
-        int GetCpuUsagePercent()
-        { 
-            return 0;
-        }
+        int GetCpuUsagePercent() { return 0; }
 
-
-        bool  GetBootTime(time_t *t)
-        { 
+        bool GetBootTime(time_t *t)
+        {
             USE_API(ntdll.dll, NtQuerySystemInformation);
             if (!proc_NtQuerySystemInformation)
             {
                 return false;
             }
             LONG status;
-            nt::SYSTEM_TIME_INFORMATION sti;  
-            status = proc_NtQuerySystemInformation(
-                SystemTimeOfDayInformation, &sti,
-                                              sizeof(sti), 0);
+            nt::SYSTEM_TIME_INFORMATION sti;
+            status = proc_NtQuerySystemInformation(SystemTimeOfDayInformation,
+                                                   &sti, sizeof(sti), 0);
             if (NO_ERROR != status) return false;
 
             FILETIME ft;

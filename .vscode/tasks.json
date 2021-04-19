@@ -20,7 +20,7 @@
                 "isDefault": true
             },
             "options": {
-                "cwd": "${workspaceRoot}/out"
+                "cwd": "${workspaceRoot}/build"
             },
         },
         {
