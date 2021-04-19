@@ -11,6 +11,7 @@
 #include "base/files/file_util.h"
 #include "base/test/unittest.h"
 #include "ui/console/console.h"
+#include "base/util/benchmark_function.h"
 
 namespace
 {
@@ -39,7 +40,8 @@ namespace
                 base::encoding::ConvertCharacterEncodingToBytes(item, encode,
                                                                 temp);
                 auto it = std::search(pe_buffer.begin(), pe_buffer.end(),
-                                      temp.begin(), temp.end());
+                                      std::boyer_moore_horspool_searcher(
+                                          temp.begin(), temp.end()));
                 if (it != pe_buffer.end())
                 {
                     find = true;
@@ -50,11 +52,11 @@ namespace
         }
     }
 
-    void GetPEBuffer(std::wstring path, std::vector<uint8_t>& pe_buffer) 
+    void GetPEBuffer(std::wstring path, std::vector<uint8_t>& pe_buffer)
     {
         HANDLE hFile =
-            CreateFile(path.c_str(), GENERIC_READ, FILE_SHARE_READ,
-                       NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+            CreateFile(path.c_str(), GENERIC_READ, FILE_SHARE_READ, NULL,
+                       OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
         if (INVALID_HANDLE_VALUE == hFile)
         {
             return;
@@ -101,14 +103,17 @@ int wmain(int argc, wchar_t* argv[])
     scan_strings = {L""};
     cmdline.SetCommandInfos(usevec);
     cmdline.PrintParseOptions();
-
+    scan_strings = {L"快压", L"小黑"};
     std::vector<uint8_t> pe_buffer;
     GetPEBuffer(cmdline.get<std::wstring>(L"exe").value(), pe_buffer);
+    TIMECOUNTBEGIN
     FindString(pe_buffer);
+    TIMECOUNTEND
     for (auto item : result)
     {
-        ui::console::SetColor(1,0,0,1);
+        ui::console::SetColor(1, 0, 0, 1);
         ui::console::WriteLine(item);
     }
+     ui::console::SetColor(1, 1, 1, 1);
     return 0;
 }
